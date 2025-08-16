@@ -1,0 +1,508 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Ease</title>
+    <link rel="stylesheet" href="static/assets/css/style.css">
+    <style>
+html {
+    scroll-behavior: smooth;
+}
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif !important;
+}
+body {
+    
+    background-color:rgb(179, 207, 212);
+    /* background-image: url('static/assets/img/back.jpeg');
+    background-size:100%; */
+    /* background-repeat:no-repeat ; */
+    /* object-fit: fill; */
+}
+
+
+  .front-logo {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-left: 13rem;
+}
+#imd{
+  width: 110px;         /* Fixed width for circular shape */
+  height: 110px;        /* Fixed height for circular shape */
+
+}
+#card{
+  margin-bottom: -5rem;
+}
+
+/* Social Icon Link Container */
+.front-logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;         /* Fixed width for circular shape */
+  height: 80px;        /* Fixed height for circular shape */
+  border-radius: 50%;
+  text-decoration: none;
+  overflow: hidden;    /* Clip any overflowing image parts */
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 10px;
+  margin-left: -14rem;
+  margin-top: 1rem;
+}
+
+/* Ensure the image fills the container and is clipped to a circle */
+.front-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: filter 0.3s ease;
+}
+
+/* Pulse Animation */
+@keyframes pulseEffect {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px var(--secondary-color, #ff5722);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+/* Hover: Apply Pulse Animation & Brighten Image */
+.front-logo a:hover {
+  animation: pulseEffect 0.5s ease-in-out forwards;
+}
+
+.front-logo a:hover img {
+  filter: brightness(1.2);
+}
+.logo_amazon{
+  width: 70px !important;   /* Increase the width */
+  height: 70px !important;  /* Increase the height */
+
+}
+.logo_amazon1{
+  width: 180px !important;   /* Increase the width */
+  height: 180px !important;  /* Increase the height */
+}
+.logo_amazon2{
+  width: 150px !important;   /* Increase the width */
+  height: 135px !important;  /* Increase the height */
+}
+.logo_amazon3{
+  width: 140px !important;   /* Increase the width */
+  height: 115px !important;  /* Increase the height */
+}
+
+
+.ease{
+  color: rgb(12, 89, 102);
+  font-weight: bold;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+  .image-container {
+    width: 100%;
+    max-width: 32rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f3f4f6; /* Equivalent to bg-gray-100 */
+    padding: 1rem; /* Equivalent to p-4 */
+    border-radius: 0.5rem; /* Equivalent to rounded-lg */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Equivalent to shadow-md */
+    margin: 4.2rem;
+    margin-left: 10%;
+    margin-bottom: 1.2rem;
+    margin-top: 4.4rem;
+} 
+
+.image {
+   height: 450px;
+    width: 450px; 
+    /* max-width: 600px; */
+    /* height: auto; */
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+} 
+
+.content{
+  display: flex;
+  margin-top: 3.2rem;
+}
+.tagline{
+  margin-bottom: 0%;
+  margin-top: 15rem;
+  font-size:larger;
+  margin-left:64px ;
+}
+
+.heading{
+  color: rgb(12, 89, 102);
+}
+
+/*-------------Features Section--------------- */
+.color{
+    background-color: rgb(179, 207, 212) ;
+    font-family: 'Times New Roman', serif !important;
+}
+.card-heading{
+    text-align: center;
+    font-size: 35px;
+    margin-top: 15px;
+    font-weight: bolder;
+    font-style: none;
+}
+.features {
+    background-color:  rgb(179, 207, 212);
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.feature-card {
+    flex: 1;
+    background-color: rgb(12, 89, 102);
+    padding: 0.5rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+
+}
+/* Hover effect for feature cards */
+.feature-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+.feature-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+}
+.feature-card p {
+    font-size: 1rem;
+    color: white;
+}
+
+
+.contact_us1 * {
+    font-family: Nunito, sans-serif;
+  }
+  
+  
+  .contact_us1 .responsive-block {
+    min-height: 75px;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 34rem;
+  }
+  
+  .contact_us1 .responsive {
+    max-width: 200%;
+    
+  }
+  
+  .contact_us1 .mainImg {
+    max-width: 100%;
+    /* object-fit: cover; */
+    height: 34rem;
+    width: 620px;
+  }
+  
+  
+  .contact_us1 .cell-block{
+    width: 643px; 
+    background-color:rgb(179, 207, 212);
+    padding-top: 18px;
+    padding-right: 50px;
+    padding-left: 50px;
+    height: 34rem;
+  }
+  
+  .contact_us1 .heading {
+    color: black;
+    font-size: 38px;
+    line-height: 48px;
+    font-weight: 800;
+    margin-bottom: 38px;
+    margin-left: 10rem;
+    font-family:Georgia, 'Times New Roman', Times, serif !important;
+  }
+  
+  .contact_us1 #message {
+    width: 100%;
+    padding-top: 12px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    height:60%;
+  }
+  
+  .contact_us1 .emailArea,.fullNameArea {
+    width: 49%;
+  }
+  
+  .contact_us1 .firstRow {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: -15px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    width: 100%;
+  }
+  
+  
+  .contact_us1 .cardHead {
+   
+    margin-bottom: 10px;
+    color:black;
+    font-size:x-large;
+  }
+  
+  .contact_us1 .submit {
+    color: white;
+    display: inline-block;
+    border-radius: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 24%;
+    text-align: center;
+    background-color:rgb(12, 89, 102);
+    border: none;
+    display: inline-block;
+     margin-top: -10px; 
+    margin-left: 13rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+
+  }
+  .contact_us1 .submit:hover {
+    background-color:rgb(98, 122, 126);  
+    transform: scale(1.05); /* Slight pop effect */
+}
+  .contact_us1 .formTable {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0px;
+  }
+  
+  .contact_us1 .messageArea {
+    width: 100%;
+    height:16rem;
+    /* margin-bottom: 26px; */
+    }
+  
+  .contact_us1 .email,.fullName {
+    width: 100%;
+    padding-top: 10px;
+    padding-right: 10px;
+    /* padding-bottom: 10px; */
+    padding-left: 10px;
+  }
+  .sub-heading{
+            margin-top: 0px;
+            color: black ;
+          }
+          .front-logo{
+            border-radius: 60%;
+            height:15rem;
+          }
+          .alert-container{
+            margin-left: 10px;
+          }
+</style>
+
+
+</head>
+<body>
+  
+  
+
+<div class="content">
+      <div class="nav-search-container">
+        <div class="tagline">
+          <!-- <img class="front-logo" src="static/assets/img/frontlogo.jpeg"> -->
+          <h2><b>Best</b> Prices,<span class="heading"><b>One</b> Search <b>Away!</b></span></h2>
+          <span class="sub-heading">Compare prices instantly and save big on every purchase.</span>
+        </div>
+        <div class="front-logo">
+          <a href="#" target="_blank"><img src="static/assets/img/gadgets.jpeg" alt="NA" class="logo_amazon"></a>
+
+          <a href="#" target="_blank"><img src="static/assets/img/amazon.jpeg" alt="NA" class="logo_amazon"></a>
+
+        </div>
+        <style>
+          .mini{
+            margin-top: 5px;
+            width:30%;
+            height:0%;
+            /* border-radius: 50%; */
+          }
+        </style>
+    
+</div>
+
+      <div class="image-container">
+        <img id="slider-image" class="image" src="static\assets/img/hero-1.svg" alt="Product Image"> 
+      </div>
+    </div>
+    <script>
+       // Array of image sources
+     const images = [
+    "static/assets/img/hero-1.svg",
+    "static/assets/img/hero-2.svg",
+    "static/assets/img/hero-3.svg",
+    "static/assets/img/hero-4.svg",
+    "static/assets/img/hero5.jpg",
+    // "static/assets/img/hero8.jpeg"
+    
+    ];
+     
+
+let currentIndex = 0; // Track the current image index
+const imageElement = document.getElementById("slider-image");
+
+// Function to change image with fade effect
+function changeImage() {
+    imageElement.style.opacity = 0; // Fade out
+
+    setTimeout(() => {
+        currentIndex = (currentIndex + 1) % images.length; // Loop through images
+        imageElement.src = images[currentIndex]; // Update image source
+        imageElement.style.opacity = 1; // Fade in
+    }, 1000); // Match the CSS transition duration
+}
+// Automatically change image every 4 seconds
+setInterval(changeImage, 4000);
+</script>
+
+
+ <!----------------- Features Section ------------------->
+    <div class="color">
+      <h4 class="card-heading"> Features </h4>
+        <div class="features">
+           <div class="feature-card">
+             <h3> Save Time & Money</h3>
+             <p> Get More Done,Spend Less.</p>
+             <div class="front-logo" id="card" >
+              <a id="imd"  target="_blank"><img src="static/assets/img/card1.jpeg" alt="NA" class="logo_amazon1"></a>
+             </div>
+             
+            </div>
+           <div class="feature-card">
+              <h3>Price Comparison</h3>
+              <p> Unbeatable Deals. Unforgettable Finds .</p>
+              <div class="front-logo" id="card" >
+                <a id="imd"  target="_blank"><img src="static/assets/img/card2.jpeg" alt="NA" class="logo_amazon2"></a>
+               </div>
+               
+            </div>
+            <div class="feature-card">
+              <h3>Search History</h3>
+              <p>Revisit to past searches.</p>
+              <div class="front-logo" id="card" >
+                <a id="imd" target="_blank"><img src="static/assets/img/card3.jpeg" alt="NA" class="logo_amazon3"></a>
+               </div>
+               
+            </div>
+        </div>
+    </div>
+
+    <div class="contact_us1" id="contact-section">
+      <div class="responsive">
+        <div class="responsive-block">
+          <div class="responsive-cell-block">
+            <img class="mainImg" id="imge" src="static\assets/img/contact.jpeg">
+          </div>
+          <div class="cell-block">
+            <p class="heading">
+              Contact Us
+            </p>
+            <form class="formTable" id="contactForm" method="POST">
+              {% csrf_token %}
+              <div class="firstRow">
+                  <div class="fullNameArea">
+                      <p class="cardHead">Full Name</p>
+                      <input class="fullName" id="full_name" name="full_name" type="text" required>
+                  </div>
+                  <div class="emailArea">
+                      <p class="cardHead">Email Address</p>
+                      <input class="email" id="email" name="email" type="email" required>
+                  </div>
+              </div>
+              <div class="messageArea">
+                  <p class="cardHead">Message</p>
+                  <textarea class="message" id="message" name="message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="submit">Send</button>
+<!-- Display success or error messages -->
+{% if messages %}
+<div class="alert-container">
+    {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+<script>
+   setTimeout(function () {
+        let alertBox = document.querySelector(".alert");
+        if (alertBox) {
+            alertBox.remove(); // Completely remove from DOM
+            console.log("Alert removed.");
+        }
+    }, 2000);
+</script>
+          </form>
+
+          
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+{% include 'footer.html' %}
+{% endblock  %}  
+
+<script>
+  document.querySelector('a[href="#contact-section"]').addEventListener('click', function(e) {
+      e.preventDefault(); // Prevent default anchor behavior
+      document.querySelector('#contact-section').scrollIntoView({
+          behavior: 'smooth'
+      });
+  });
+
+</script>

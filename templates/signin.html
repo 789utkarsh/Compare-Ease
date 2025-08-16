@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<style>
+  * {
+    font-family: 'Times New Roman', Times, serif !important;
+}
+.aa{
+  margin-left: 10rem;
+  margin-top: -3rem;
+  padding-top: 2rem;
+}
+#admin-hr{
+margin-left: 5rem;
+margin-right: 5rem;
+
+}
+.container1{
+  margin:4rem;
+  border-radius: 25px;
+  background-color: transparent;
+  box-shadow: 0 4px 200px 0 rgba(0,0,0,0.6), 0 6px 20px 0 rgba(0,0,0,0.6) ;
+  margin-left: 25rem;
+  margin-right: 22rem;
+}
+.form-group-admin{
+  width:22rem;
+  margin-left: 5rem;
+}
+#admin-button{
+  background-color: rgb(12, 89, 102);
+  margin-left: 11rem;
+  /* font-size:5rem; */
+  color: white;
+
+}
+#admin-button:hover{
+  background-color: rgb(98, 122, 126);
+  color: black;
+}
+#admin-form{
+  border-radius: 25px;
+  
+}
+
+</style>
+
+<section class="section-services section-t8">
+  <div class="container1">
+  <h3 class="aa">User Sign In</h3>
+  <hr id="admin-hr">
+  <div class="form">
+    <form class="form-a" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="row">
+        
+        <div class="col-md-12 mb-2">
+          <div class="form-group-admin">
+            <label class="pb-2" for="Type">Email</label>
+            <input type="email" class="form-control form-control-a" placeholder="Email" name="username">
+          </div>
+        </div>
+        <div class="col-md-12 mb-2">
+          <div class="form-group-admin">
+            <label class="pb-2" for="Type">Password</label>
+            <input type="password" class="form-control form-control-a" placeholder="Password" name="password">
+          </div>
+        </div>
+        
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-b" id="admin-button">Sign In</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock  %} 
